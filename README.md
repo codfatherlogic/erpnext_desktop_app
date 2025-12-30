@@ -1,5 +1,10 @@
 # ERPNext Desktop App
 
+[![Build Status](https://github.com/codfatherlogic/erpnext_desktop_app/workflows/Test%20Build/badge.svg)](https://github.com/codfatherlogic/erpnext_desktop_app/actions)
+[![Release](https://img.shields.io/github/v/release/codfatherlogic/erpnext_desktop_app)](https://github.com/codfatherlogic/erpnext_desktop_app/releases)
+[![License](https://img.shields.io/github/license/codfatherlogic/erpnext_desktop_app)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-blue)](https://github.com/codfatherlogic/erpnext_desktop_app/releases)
+
 A production-ready Electron.js wrapper for ERPNext with secure authentication and native printing support.
 
 ## Features
