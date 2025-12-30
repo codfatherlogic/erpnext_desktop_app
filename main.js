@@ -61,9 +61,6 @@ function createLoginWindow() {
   // Remove menu bar
   loginWindow.setMenuBarVisibility(false);
   
-  // Open dev tools for debugging (disable in production)
-  // loginWindow.webContents.openDevTools();
-  
   loginWindow.on('closed', () => {
     loginWindow = null;
   });
@@ -142,7 +139,6 @@ function createMainWindow(erpUrl) {
 
 // Handle login
 ipcMain.handle('login', async (event, { url, username, password }) => {
-  console.log('Login attempt:', { url, username });
   try {
     // Validate URL
     if (!url.startsWith('https://')) {
@@ -159,8 +155,6 @@ ipcMain.handle('login', async (event, { url, username, password }) => {
       }),
       withCredentials: true
     });
-
-    console.log('Attempting login to:', `${url}/api/method/login`);
     
     // Attempt login
     const response = await instance.post(
@@ -173,8 +167,6 @@ ipcMain.handle('login', async (event, { url, username, password }) => {
         }
       }
     );
-
-    console.log('Login response:', response.status, response.data);
 
     if (response.data.message === 'Logged In' || response.status === 200) {
       // Store credentials securely

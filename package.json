@@ -1,6 +1,6 @@
 {
   "name": "erpnext-desktop",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ERPNext Desktop App - Secure Electron wrapper for ERPNext",
   "main": "main.js",
   "scripts": {
