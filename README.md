@@ -20,13 +20,44 @@ A production-ready Electron.js wrapper for ERPNext with secure authentication an
 
 ## Installation
 
+### macOS
+
+⚠️ **Important**: Apps are unsigned. You'll see a security warning.
+
+**Quick Fix**:
 ```bash
-npm install
+xattr -cr /Applications/ERPNext\ Desktop.app
+```
+
+See [MACOS_SECURITY_FIX.md](MACOS_SECURITY_FIX.md) for detailed instructions.
+
+**Steps**:
+1. Download appropriate DMG from [releases](https://github.com/codfatherlogic/erpnext_desktop_app/releases)
+2. Open DMG and drag to Applications
+3. Run the command above to remove quarantine flag
+4. Launch from Applications
+
+### Windows
+1. Download `ERPNext Desktop Setup 1.0.0.exe` from [releases](https://github.com/codfatherlogic/erpnext_desktop_app/releases)
+2. Run installer and follow wizard
+3. If SmartScreen appears, click "More info" → "Run anyway"
+
+### Linux
+**AppImage**:
+```bash
+chmod +x ERPNext-Desktop-*.AppImage
+./ERPNext-Desktop-*.AppImage
+```
+
+**Debian/Ubuntu**:
+```bash
+sudo dpkg -i erpnext-desktop_*.deb
 ```
 
 ## Development
 
 ```bash
+npm install
 npm start
 ```
 
