@@ -1,0 +1,13 @@
+node_modules/
+dist/
+build/icon.iconset/
+*.log
+.DS_Store
+.env
+*.dmg
+*.exe
+*.deb
+*.AppImage
+*.zip
+*.blockmap
+*.yml

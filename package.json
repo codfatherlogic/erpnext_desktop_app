@@ -1,0 +1,122 @@
+{
+  "name": "erpnext-desktop",
+  "version": "1.0.0",
+  "description": "ERPNext Desktop App - Secure Electron wrapper for ERPNext",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --mac --win --linux",
+    "build:mac": "electron-builder --mac",
+    "build:mac-intel": "electron-builder --mac --x64",
+    "build:mac-silicon": "electron-builder --mac --arm64",
+    "build:mac-universal": "electron-builder --mac universal",
+    "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux",
+    "build:all": "electron-builder -mwl"
+  },
+  "keywords": [
+    "ERPNext",
+    "Electron",
+    "Desktop",
+    "ERP"
+  ],
+  "author": "CodFather Logic LLP",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codfatherlogic/erpnext_desktop_app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/codfatherlogic/erpnext_desktop_app/issues"
+  },
+  "homepage": "https://github.com/codfatherlogic/erpnext_desktop_app#readme",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "keytar": "^7.9.0",
+    "electron-store": "^8.1.0",
+    "electron-updater": "^6.1.7"
+  },
+  "build": {
+    "appId": "com.codfatherlogic.erpnext",
+    "productName": "ERPNext Desktop",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!**/*.md",
+      "!build-icon.sh",
+      "!build/icon.iconset"
+    ],
+    "mac": {
+      "category": "public.app-category.business",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        },
+        {
+          "target": "zip",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "icon": "build/icon.icns",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64", "ia32"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": ["x64", "arm64"]
+        },
+        {
+          "target": "deb",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "category": "Office",
+      "icon": "build/icon.png",
+      "maintainer": "your.email@company.com"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    }
+  }
+}

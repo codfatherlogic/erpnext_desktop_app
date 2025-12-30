@@ -1,0 +1,23 @@
+{
+  "defaultErpUrl": "",
+  "security": {
+    "enforceHttps": true,
+    "validateCertificates": true,
+    "allowedDomains": []
+  },
+  "printing": {
+    "defaultPaperSize": "A4",
+    "defaultMargin": "default",
+    "enableSilentPrint": false,
+    "defaultPrinter": ""
+  },
+  "ui": {
+    "rememberCredentials": true,
+    "showMenuBar": false,
+    "enableDevTools": false
+  },
+  "updates": {
+    "autoCheck": true,
+    "autoDownload": true
+  }
+}

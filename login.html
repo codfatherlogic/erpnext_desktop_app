@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self';">
+  <title>ERPNext Login</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #5B63D3 0%, #6B4BC4 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .login-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      padding: 40px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .logo h1 {
+      color: #2c3e50;
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .logo p {
+      color: #7f8c8d;
+      font-size: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      color: #2c3e50;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #5B63D3;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #5B63D3 0%, #6B4BC4 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, opacity 0.2s;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .error-message {
+      background: #fee;
+      color: #c33;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      display: none;
+      border: 1px solid #fcc;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .remember-me input[type="checkbox"] {
+      width: auto;
+      margin: 0;
+    }
+
+    .remember-me label {
+      margin: 0;
+      font-weight: 400;
+      cursor: pointer;
+    }
+
+    .loading {
+      text-align: center;
+      color: #7f8c8d;
+      margin-top: 10px;
+      display: none;
+    }
+
+    .loading.show {
+      display: block;
+    }
+
+    .help-text {
+      font-size: 12px;
+      color: #95a5a6;
+      margin-top: 5px;
+    }
+
+    .version {
+      text-align: center;
+      color: #bdc3c7;
+      font-size: 12px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="logo">
+      <h1>ERPNext Desktop</h1>
+      <p>Secure Enterprise Resource Planning</p>
+    </div>
+
+    <div id="error" class="error-message"></div>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="url">ERPNext URL</label>
+        <input 
+          type="url" 
+          id="url" 
+          placeholder="https://your-erp-domain.com" 
+          required
+          pattern="https://.*"
+        >
+        <p class="help-text">Must use HTTPS (e.g., https://erp.example.com)</p>
+      </div>
+
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input 
+          type="text" 
+          id="username" 
+          placeholder="your.email@company.com" 
+          required
+          autocomplete="username"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          placeholder="••••••••" 
+          required
+          autocomplete="current-password"
+        >
+      </div>
+
+      <div class="remember-me">
+        <input type="checkbox" id="remember" checked>
+        <label for="remember">Remember credentials</label>
+      </div>
+
+      <button type="submit" class="btn" id="loginBtn">
+        Sign In
+      </button>
+
+      <div class="loading" id="loading">
+        Connecting to ERPNext...
+      </div>
+    </form>
+
+    <div class="version">v1.0.0</div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>
