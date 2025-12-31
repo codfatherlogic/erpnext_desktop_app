@@ -320,14 +320,30 @@ function setupAutoUpdater() {
 
 // Logout handler
 ipcMain.handle('logout', async () => {
-  if (mainWindow && !mainWindow.isDestroyed()) {
-    mainWindow.close();
+  try {
+    // Stop any ongoing navigations and requests in the BrowserView
+    if (erpView && erpView.webContents && !erpView.webContents.isDestroyed()) {
+      erpView.webContents.stop();
+      // Load a blank page to prevent any further ERPNext API calls
+      await erpView.webContents.loadURL('about:blank');
+    }
+    
+    // Close main window
+    if (mainWindow && !mainWindow.isDestroyed()) {
+      mainWindow.close();
+    }
+    
+    // Clear session data
+    const ses = session.fromPartition('persist:erpnext');
+    await ses.clearStorageData();
+    
+    // Create login window
+    createLoginWindow();
+    return { success: true };
+  } catch (error) {
+    console.error('Logout error:', error);
+    // Still try to create login window even if cleanup fails
+    createLoginWindow();
+    return { success: true };
   }
-  
-  // Clear session
-  const ses = session.fromPartition('persist:erpnext');
-  await ses.clearStorageData();
-  
-  createLoginWindow();
-  return { success: true };
 });
